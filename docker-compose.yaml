@@ -1,0 +1,33 @@
+services:
+
+  app:
+
+    build: .
+
+    container_name: personal-notes-app
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17
+
+    container_name: postgres-db
+
+    environment:
+      POSTGRES_DB: PersonalNotes
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bharath123
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+
